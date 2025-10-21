@@ -1,0 +1,31 @@
+{
+  "name": "upper-doodle",
+  "version": "0.1.0",
+  "description": "A sketch-based web component for visual authoring of UPPER ontology models",
+  "type": "module",
+  "main": "src/upper-doodle.js",
+  "exports": {
+    ".": "./src/upper-doodle.js",
+    "./src/upper-doodle.js": "./src/upper-doodle.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "lint": "eslint --max-warnings=0 .",
+    "lint:fix": "eslint --fix .",
+    "types": "tsc",
+    "build": "npm run types",
+    "test": "npm run test:puppeteer:chrome",
+    "test:puppeteer:chrome": "x-test --client=puppeteer --url=http://127.0.0.1:3000/test/ --coverage=true"
+  },
+  "keywords": [],
+  "author": "Andrew Seier",
+  "devDependencies": {
+    "@netflix/eslint-config": "^3.0.0",
+    "eslint": "^9.36.0",
+    "globals": "^16.4.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
