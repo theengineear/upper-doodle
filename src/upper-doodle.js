@@ -2228,11 +2228,27 @@ export class UpperDoodle extends HTMLElement {
     const offsetX = targetX - centerX;
     const offsetY = targetY - centerY;
 
+    // Create mapping from old element IDs to new UUIDs
+    // This allows us to preserve arrow bindings when pasting connected elements
+    const idMapping = new Map();
+    for (const element of elements) {
+      idMapping.set(element.id, crypto.randomUUID());
+    }
+
     // Create preview elements with fresh UUIDs and updated positions
     const previewElements = elements.map(element => {
-      const previewId = crypto.randomUUID();
+      const previewId = idMapping.get(element.id);
 
       if (element.type === 'arrow') {
+        // Remap source/target if they reference elements in the copied set
+        // Otherwise set to null (external bindings are lost on paste)
+        const newSource = element.source && idMapping.has(element.source)
+          ? idMapping.get(element.source)
+          : null;
+        const newTarget = element.target && idMapping.has(element.target)
+          ? idMapping.get(element.target)
+          : null;
+
         return {
           ...element,
           id: previewId,
@@ -2240,8 +2256,8 @@ export class UpperDoodle extends HTMLElement {
           y1: element.y1 + offsetY,
           x2: element.x2 + offsetX,
           y2: element.y2 + offsetY,
-          source: null,
-          target: null,
+          source: newSource,
+          target: newTarget,
         };
       } else if (element.type === 'tree') {
         // Trees cannot be copied - skip
