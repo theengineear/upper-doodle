@@ -34,11 +34,6 @@ template.setHTMLUnsafe(html`
           <rect x="0.75" y="0.75" width="14.5" height="14.5" rx="2.25" stroke="currentColor" stroke-width="1.5"/>
         </svg>
       </button>
-      <button id="text" title="text">
-        <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 1.25V14.75M4.75 14.75H9.25M12.25 3.5V1.25H1.75V3.5" stroke="currentColor" stroke-width="2.112" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
       <div class="divider"></div>
       <input id="domain" value="domain">
       <button id="help">

@@ -89,6 +89,7 @@ export class UpperDoodle extends HTMLElement {
       domain: 'domain',
       elements: {},
       scene: { x: 0, y: 0, k: 1 },
+      nTriples: '',
     },
     ephemeral: {
       viewX: null,
@@ -625,19 +626,23 @@ export class UpperDoodle extends HTMLElement {
     // Snapshot state BEFORE adding arrow
     State.snapshot(this.#state);
 
-    // Add arrow and transition to edit mode
+    // Add arrow and select it
     let nextState = State.addElement(this.#state, arrow);
     nextState = State.setInteraction(nextState, {
-      type: 'edit',
-      elementId: arrow.id,
+      type: 'selection',
+      elementIds: [arrow.id],
+      startViewX: 0, // Not used for programmatic selection
+      startViewY: 0, // Not used for programmatic selection
     });
 
     this.#state = nextState;
 
     this.#invalidateContent();
     this.#invalidatePreview();
-    this.#invalidateEdit();
     this.#invalidateCursor();
+
+    // Call _edit() to position textarea and enter edit mode
+    this._edit();
   }
 
   /**
@@ -2524,7 +2529,7 @@ export class UpperDoodle extends HTMLElement {
    * @param {Elements} elements - Current elements to analyze
    */
   #updateSemanticSets(elements) {
-    const { ignored, raw, invalid, keyed } = Triples.generate(this.#state.persistent.domain, this.#state.persistent.prefixes, elements);
+    const { ignored, raw, invalid, keyed } = Triples.generate(this.#state.persistent.domain, this.#state.persistent.prefixes, elements, this.#state.persistent.nTriples);
     this.#ignored = ignored;
     this.#raw = raw;
     this.#invalidSyntax = invalid;
@@ -3241,12 +3246,13 @@ export class UpperDoodle extends HTMLElement {
       // Document-level properties
       'domain': 0,
       'elements': 1,
-      'prefixes': 2,
-      'down': 3,
-      'interaction': 4,
-      'scene': 5,
-      'viewX': 6,
-      'viewY': 7,
+      'nTriples': 2,
+      'prefixes': 3,
+      'down': 4,
+      'interaction': 5,
+      'scene': 6,
+      'viewX': 7,
+      'viewY': 8,
 
       // Element common properties (always first)
       'id': 10,
@@ -3317,6 +3323,7 @@ export class UpperDoodle extends HTMLElement {
           .sort(([a], [b]) => a.localeCompare(b))
       ),
       interaction: state.ephemeral.interaction,
+      nTriples: state.persistent.nTriples,
       prefixes: Object.fromEntries(
         Object.entries(state.persistent.prefixes)
           .sort(([a], [b]) => a.localeCompare(b))
@@ -3351,6 +3358,7 @@ export class UpperDoodle extends HTMLElement {
         domain: flat.domain,
         elements: flat.elements,
         scene: flat.scene,
+        nTriples: flat.nTriples,
       },
       ephemeral: {
         viewX: flat.viewX,
@@ -3369,10 +3377,11 @@ export class UpperDoodle extends HTMLElement {
 
   /**
    * Convert a document object to canonical JSON string
-   * @param {Object} obj - Document object with prefixes, domain, and elements
+   * @param {Object} obj - Document object with prefixes, domain, elements, and nTriples
    * @param {Object.<string, string>} obj.prefixes - Prefix mappings
    * @param {string} obj.domain - Default domain prefix
    * @param {Object.<string, Element>} obj.elements - Elements map
+   * @param {string} obj.nTriples - Custom N-Triples document
    * @returns {string} Canonical JSON string
    */
   static valueFromObject(obj) {
@@ -3380,7 +3389,10 @@ export class UpperDoodle extends HTMLElement {
     Validate.document(obj);
 
     // Extract and validate required properties
-    const { prefixes, domain, elements } = obj;
+    const { prefixes, domain, elements, nTriples } = obj;
+
+    // Canonicalize nTriples
+    const canonicalNTriples = Validate.canonicalizeNTriples(nTriples);
 
     // Create canonical structure with sorted element keys
     const canonical = {
@@ -3389,6 +3401,7 @@ export class UpperDoodle extends HTMLElement {
         Object.entries(elements)
           .sort(([a], [b]) => a.localeCompare(b))
       ),
+      nTriples: canonicalNTriples,
       prefixes: Object.fromEntries(
         Object.entries(prefixes)
           .sort(([a], [b]) => a.localeCompare(b))
@@ -3419,7 +3432,7 @@ export class UpperDoodle extends HTMLElement {
   }
 
   /**
-   * Get canonical document value (prefixes, domain, elements as JSON string)
+   * Get canonical document value (prefixes, domain, elements, nTriples as JSON string)
    * @returns {string} Canonical JSON string
    */
   get value() {
@@ -3427,11 +3440,12 @@ export class UpperDoodle extends HTMLElement {
       prefixes: this.#state.persistent.prefixes,
       domain: this.#state.persistent.domain,
       elements: this.#state.persistent.elements,
+      nTriples: this.#state.persistent.nTriples,
     });
   }
 
   /**
-   * Set document value (prefixes, domain, elements from canonical JSON string)
+   * Set document value (prefixes, domain, elements, nTriples from canonical JSON string)
    * @param {string} value - Canonical JSON string
    * @throws {TypeError} If value is not canonical or invalid
    */
@@ -3446,6 +3460,9 @@ export class UpperDoodle extends HTMLElement {
     const obj = /** @type {unknown} */ (JSON.parse(value));
     Validate.document(obj);
 
+    // Canonicalize nTriples
+    const canonicalNTriples = Validate.canonicalizeNTriples(obj.nTriples);
+
     // Apply tree layouts to elements before setting state
     const elementsWithTreeLayouts = this.#applyTreeLayouts(obj.elements);
 
@@ -3454,6 +3471,7 @@ export class UpperDoodle extends HTMLElement {
       prefixes: obj.prefixes,
       domain: obj.domain,
       elements: elementsWithTreeLayouts,
+      nTriples: canonicalNTriples,
     });
 
     // Clear undo/redo history when importing new document
@@ -3464,13 +3482,14 @@ export class UpperDoodle extends HTMLElement {
 
   /**
    * Get document value as parsed object
-   * @returns {{ prefixes: Object.<string, string>, domain: string, elements: Object.<string, Element> }}
+   * @returns {{ prefixes: Object.<string, string>, domain: string, elements: Object.<string, Element>, nTriples: string }}
    */
   get valueAsObject() {
     return {
       prefixes: this.#state.persistent.prefixes,
       domain: this.#state.persistent.domain,
       elements: this.#state.persistent.elements,
+      nTriples: this.#state.persistent.nTriples,
     };
   }
 
@@ -3482,7 +3501,8 @@ export class UpperDoodle extends HTMLElement {
     const { nTriples } = Triples.generate(
       this.#state.persistent.domain,
       this.#state.persistent.prefixes,
-      this.#state.persistent.elements
+      this.#state.persistent.elements,
+      this.#state.persistent.nTriples
     );
     return nTriples;
   }
@@ -3495,7 +3515,8 @@ export class UpperDoodle extends HTMLElement {
     const { prefixes, nTriples } = Triples.generate(
       this.#state.persistent.domain,
       this.#state.persistent.prefixes,
-      this.#state.persistent.elements
+      this.#state.persistent.elements,
+      this.#state.persistent.nTriples
     );
     return Turtle.generate(prefixes, nTriples);
   }
@@ -3528,6 +3549,7 @@ export class UpperDoodle extends HTMLElement {
         domain: flat.domain,
         elements: flat.elements,
         scene: flat.scene,
+        nTriples: flat.nTriples,
       },
       ephemeral: {
         viewX: flat.viewX,

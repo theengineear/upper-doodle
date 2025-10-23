@@ -637,9 +637,75 @@ export class Validate {
   }
 
   /**
-   * Validates a document object (prefixes, domain, elements)
+   * Canonicalizes an N-Triples string by:
+   * - Trimming leading/trailing whitespace from each line
+   * - Removing empty lines
+   * - Removing comment lines (starting with #)
+   * - Sorting lines alphabetically
+   * - Adding final newline if non-empty
+   * @param {string} nTriples - N-Triples string to canonicalize
+   * @returns {string} Canonicalized N-Triples string
+   */
+  static canonicalizeNTriples(nTriples) {
+    if (!nTriples) {
+      return '';
+    }
+
+    const canonical = nTriples
+      .split(/\r?\n/)                        // Split on any newline
+      .map(line => line.trim())              // Trim leading/trailing whitespace
+      .filter(line => line.length > 0)       // Remove empty lines
+      .filter(line => !line.startsWith('#')) // Remove comments
+      .sort();                               // Sort alphabetically
+
+    return canonical.length > 0 ? canonical.join('\n') + '\n' : '';
+  }
+
+  /**
+   * Validates an N-Triples string
+   * @param {unknown} nTriples - Value to validate as N-Triples
+   * @returns {asserts nTriples is string}
+   */
+  static nTriples(nTriples) {
+    if (typeof nTriples !== 'string') {
+      throw new TypeError('nTriples must be a string');
+    }
+
+    // Empty string is valid
+    if (!nTriples) {
+      return;
+    }
+
+    const lines = nTriples
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(line => line.length > 0)
+      .filter(line => !line.startsWith('#')); // Ignore comments during validation
+
+    for (const line of lines) {
+      // Must end with ' .'
+      if (!line.endsWith(' .')) {
+        throw new TypeError(`Invalid N-Triple: must end with ' .' - "${line}"`);
+      }
+
+      // Must have at least 4 tokens (subject predicate object .)
+      const tokens = line.split(/\s+/);
+      if (tokens.length < 4) {
+        throw new TypeError(`Invalid N-Triple: insufficient tokens - "${line}"`);
+      }
+
+      // Basic format check: subject must be IRI or blank node
+      const subject = tokens[0];
+      if (!subject.startsWith('<') && !subject.startsWith('_:')) {
+        throw new TypeError(`Invalid N-Triple: subject must be IRI or blank node - "${line}"`);
+      }
+    }
+  }
+
+  /**
+   * Validates a document object (prefixes, domain, elements, nTriples)
    * @param {unknown} doc - Value to validate as document
-   * @returns {asserts doc is { prefixes: Record<string, string>, domain: string, elements: Record<string, Element> }}
+   * @returns {asserts doc is { prefixes: Record<string, string>, domain: string, elements: Record<string, Element>, nTriples: string }}
    */
   static document(doc) {
     if (!doc || typeof doc !== 'object' || Array.isArray(doc)) {
@@ -647,7 +713,7 @@ export class Validate {
     }
 
     // Check all required keys exist
-    const requiredKeys = ['prefixes', 'domain', 'elements'];
+    const requiredKeys = ['prefixes', 'domain', 'elements', 'nTriples'];
     for (const key of requiredKeys) {
       if (!(key in doc)) {
         throw new TypeError(`document.${key} is required`);
@@ -669,6 +735,7 @@ export class Validate {
     Validate.prefixes(record.prefixes);
     Validate.domain(record.domain);
     Validate.elements(record.elements);
+    Validate.nTriples(record.nTriples);
   }
 
   /**
@@ -706,7 +773,7 @@ export class Validate {
     }
 
     const persistentRecord = /** @type {Record<string, unknown>} */ (persistent);
-    const persistentKeys = ['prefixes', 'domain', 'elements', 'scene'];
+    const persistentKeys = ['prefixes', 'domain', 'elements', 'scene', 'nTriples'];
     for (const key of persistentKeys) {
       if (!(key in persistent)) {
         throw new TypeError(`state.persistent.${key} is required`);
@@ -724,6 +791,7 @@ export class Validate {
     Validate.domain(persistentRecord.domain);
     Validate.elements(persistentRecord.elements);
     Validate.scene(persistentRecord.scene);
+    Validate.nTriples(persistentRecord.nTriples);
 
     // Validate ephemeral state
     const ephemeral = record.ephemeral;

@@ -728,9 +728,10 @@ export class Triples {
    * @param {string} domain - Domain prefix for auto-generating namespace URIs
    * @param {Prefixes} prefixes - Available prefix mappings
    * @param {Elements} elements - All elements in the diagram
+   * @param {string} customNTriples - Custom N-Triples to merge into output
    * @returns {{ prefixes: Prefixes, nTriples: string, ignored: Set<string>, raw: Set<string>, invalid: Set<string>, keyed: Set<string> }}
    */
-  static generate(domain, prefixes, elements) {
+  static generate(domain, prefixes, elements, customNTriples) {
     // Track which prefixes are actually used
     const usedPrefixes = /** @type {Prefixes} */ ({});
     const triples = /** @type {string[]} */ ([]);
@@ -935,6 +936,34 @@ export class Triples {
       }
     }
 
+    // Merge custom N-Triples into generated triples
+    if (customNTriples) {
+      const customLines = customNTriples
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0);
+      triples.push(...customLines);
+
+      // Scan custom N-Triples for URIs and mark their prefixes as used
+      // This ensures Turtle.generate() has the prefix mappings it needs
+      for (const line of customLines) {
+        // Extract all URIs from the line (anything in angle brackets)
+        const uriMatches = line.matchAll(/<([^>]+)>/g);
+        for (const match of uriMatches) {
+          const uri = match[1];
+          // Check if any prefix matches this URI
+          for (const [prefix, namespaceUri] of Object.entries(prefixes)) {
+            if (uri.startsWith(namespaceUri)) {
+              // Mark this prefix as used
+              usedPrefixes[prefix] = namespaceUri;
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    // Deduplicate and sort all triples (generated + custom)
     const deduplicatedTriples = [...new Set(triples)];
     const sortedDeduplicatedTriples = deduplicatedTriples.toSorted();
     const nTriples = sortedDeduplicatedTriples.join('\n') + '\n';

@@ -400,8 +400,8 @@ export class Turtle {
     const maxPrefixLength = Math.max(...prefixEntries.map(([prefix]) => prefix.length));
 
     const prefixLines = prefixEntries.map(([prefix, namespace]) => {
-      const paddedPrefix = `@prefix ${prefix}:`.padEnd(maxPrefixLength + 10); // 10 = "@prefix " + ":"
-      return `${paddedPrefix} <${namespace}> .`;
+      const paddedPrefix = `@prefix ${prefix}:`.padEnd(maxPrefixLength + 10); // 10 = "@prefix " + ":" + " "
+      return `${paddedPrefix}<${namespace}> .`;
     });
 
     return prefixLines.join('\n');

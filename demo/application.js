@@ -46,7 +46,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const domain = 'demo';
     const prefixes = computePrefixes(domain);
     const elements = {};
-    element.value = UpperDoodle.valueFromObject({ domain, prefixes, elements });
+    const nTriples = '';
+    element.value = UpperDoodle.valueFromObject({ domain, prefixes, elements, nTriples });
     previousDomain = domain;
   }
 });

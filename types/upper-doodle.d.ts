@@ -69,10 +69,11 @@ export class UpperDoodle extends HTMLElement {
     static _valueFromJSON(json: string): string;
     /**
      * Convert a document object to canonical JSON string
-     * @param {Object} obj - Document object with prefixes, domain, and elements
+     * @param {Object} obj - Document object with prefixes, domain, elements, and nTriples
      * @param {Object.<string, string>} obj.prefixes - Prefix mappings
      * @param {string} obj.domain - Default domain prefix
      * @param {Object.<string, Element>} obj.elements - Elements map
+     * @param {string} obj.nTriples - Custom N-Triples document
      * @returns {string} Canonical JSON string
      */
     static valueFromObject(obj: {
@@ -83,6 +84,7 @@ export class UpperDoodle extends HTMLElement {
         elements: {
             [x: string]: Element;
         };
+        nTriples: string;
     }): string;
     /**
      * Convert a JSON string to canonical JSON string
@@ -192,19 +194,19 @@ export class UpperDoodle extends HTMLElement {
     }) | null;
     render(): void;
     /**
-     * Set document value (prefixes, domain, elements from canonical JSON string)
+     * Set document value (prefixes, domain, elements, nTriples from canonical JSON string)
      * @param {string} value - Canonical JSON string
      * @throws {TypeError} If value is not canonical or invalid
      */
     set value(value: string);
     /**
-     * Get canonical document value (prefixes, domain, elements as JSON string)
+     * Get canonical document value (prefixes, domain, elements, nTriples as JSON string)
      * @returns {string} Canonical JSON string
      */
     get value(): string;
     /**
      * Get document value as parsed object
-     * @returns {{ prefixes: Object.<string, string>, domain: string, elements: Object.<string, Element> }}
+     * @returns {{ prefixes: Object.<string, string>, domain: string, elements: Object.<string, Element>, nTriples: string }}
      */
     get valueAsObject(): {
         prefixes: {
@@ -214,6 +216,7 @@ export class UpperDoodle extends HTMLElement {
         elements: {
             [x: string]: Element;
         };
+        nTriples: string;
     };
     /**
      * Get document value as N-Triples format

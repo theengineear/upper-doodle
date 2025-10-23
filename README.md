@@ -33,6 +33,7 @@ element.value = UpperDoodle.valueFromObject({
     xsd: 'http://www.w3.org/2001/XMLSchema#',
   },
   elements: {}, // This will be empty the first time you boot.
+  nTriples: '', // Optionally add an N-Triples document here if you need.
 });
 document.body.append(element);
 ```

@@ -30,7 +30,7 @@ export class State {
    * @returns {StateShape} New state object
    */
   static update(state, update) {
-    const persistentKeys = ['prefixes', 'domain', 'elements', 'scene'];
+    const persistentKeys = ['prefixes', 'domain', 'elements', 'scene', 'nTriples'];
     /** @type {Partial<PersistentState>} */
     const persistentUpdate = {};
     /** @type {Partial<EphemeralState>} */

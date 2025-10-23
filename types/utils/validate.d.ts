@@ -129,14 +129,32 @@ export class Validate {
      */
     static domain(domain: unknown): asserts domain is string;
     /**
-     * Validates a document object (prefixes, domain, elements)
+     * Canonicalizes an N-Triples string by:
+     * - Trimming leading/trailing whitespace from each line
+     * - Removing empty lines
+     * - Removing comment lines (starting with #)
+     * - Sorting lines alphabetically
+     * - Adding final newline if non-empty
+     * @param {string} nTriples - N-Triples string to canonicalize
+     * @returns {string} Canonicalized N-Triples string
+     */
+    static canonicalizeNTriples(nTriples: string): string;
+    /**
+     * Validates an N-Triples string
+     * @param {unknown} nTriples - Value to validate as N-Triples
+     * @returns {asserts nTriples is string}
+     */
+    static nTriples(nTriples: unknown): asserts nTriples is string;
+    /**
+     * Validates a document object (prefixes, domain, elements, nTriples)
      * @param {unknown} doc - Value to validate as document
-     * @returns {asserts doc is { prefixes: Record<string, string>, domain: string, elements: Record<string, Element> }}
+     * @returns {asserts doc is { prefixes: Record<string, string>, domain: string, elements: Record<string, Element>, nTriples: string }}
      */
     static document(doc: unknown): asserts doc is {
         prefixes: Record<string, string>;
         domain: string;
         elements: Record<string, Element>;
+        nTriples: string;
     };
     /**
      * Validates a complete state object

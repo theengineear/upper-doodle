@@ -486,6 +486,10 @@ export type PersistentState = {
      * - Scene/viewport transform (pan and zoom)
      */
     scene: ViewTransform;
+    /**
+     * - Custom N-Triples document (additional triples not represented by visual elements)
+     */
+    nTriples: string;
 };
 /**
  * Ephemeral state that is NOT saved in undo/redo history

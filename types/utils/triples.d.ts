@@ -198,9 +198,10 @@ export class Triples {
      * @param {string} domain - Domain prefix for auto-generating namespace URIs
      * @param {Prefixes} prefixes - Available prefix mappings
      * @param {Elements} elements - All elements in the diagram
+     * @param {string} customNTriples - Custom N-Triples to merge into output
      * @returns {{ prefixes: Prefixes, nTriples: string, ignored: Set<string>, raw: Set<string>, invalid: Set<string>, keyed: Set<string> }}
      */
-    static generate(domain: string, prefixes: Prefixes, elements: Elements): {
+    static generate(domain: string, prefixes: Prefixes, elements: Elements, customNTriples: string): {
         prefixes: Prefixes;
         nTriples: string;
         ignored: Set<string>;

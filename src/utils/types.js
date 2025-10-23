@@ -216,6 +216,7 @@ export const TYPE_ABBREVIATIONS = {
  * @property {string} domain - Default domain prefix for new elements
  * @property {Object.<string, Element>} elements - Object mapping element IDs to elements
  * @property {ViewTransform} scene - Scene/viewport transform (pan and zoom)
+ * @property {string} nTriples - Custom N-Triples document (additional triples not represented by visual elements)
  */
 
 /**
