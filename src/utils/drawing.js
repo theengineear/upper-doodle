@@ -759,10 +759,10 @@ export class Drawing {
       preserveVertices: true,
     };
 
-    // Inset shape by 8px from logical bounding box, but ensure minimum dimensions
-    const shapeWidth = Math.max(Drawing.#MIN_SHAPE_SIZE, bbox.width - 16);
-    const shapeHeight = Math.max(Drawing.#MIN_SHAPE_SIZE, bbox.height - 16);
-    const path = Drawing.createRoundedRectPath(bbox.x + 8, bbox.y + 8, shapeWidth, shapeHeight);
+    // Inset shape by 16px from logical bounding box, but ensure minimum dimensions
+    const shapeWidth = Math.max(Drawing.#MIN_SHAPE_SIZE, bbox.width - 32);
+    const shapeHeight = Math.max(Drawing.#MIN_SHAPE_SIZE, bbox.height - 32);
+    const path = Drawing.createRoundedRectPath(bbox.x + 16, bbox.y + 16, shapeWidth, shapeHeight);
     const shapeGroup = rc.path(path, roughOptions);
 
     // Add rough class to shape group

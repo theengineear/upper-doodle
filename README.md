@@ -4,7 +4,80 @@ A sketch-based web component for visual authoring of Upper ontology models.
 
 [doodle once, represent everywhere](https://netflixtechblog.com/uda-unified-data-architecture-6a6aee261d8d)
 
-TODO! Image of simple domain model + Resulting turtle text.
+![Screenshot of a simple “onepiece” domain model.](/upper-doodle-example.png)
+
+```turtle
+@prefix onepiece: <https://github.com/theengineear/ns/onepiece#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix upper:    <https://github.com/theengineear/ns/upper#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+
+onepiece:
+    a            upper:DomainModel ;
+    upper:domain "onepiece" ;
+.
+
+onepiece:Character
+    a                upper:DirectClass ;
+    upper:primaryKey ( onepiece:rname ) ;
+    upper:property   onepiece:devilFruit ;
+    upper:property   onepiece:ename ;
+    upper:property   onepiece:rname ;
+.
+
+onepiece:devilFruit
+    a              upper:Relationship ;
+    upper:class    onepiece:DevilFruit ;
+    upper:minCount 0 ;
+    upper:maxCount 1 ;
+.
+
+onepiece:DevilFruit
+    a                upper:DirectClass ;
+    upper:primaryKey ( onepiece:rname ) ;
+    upper:property   onepiece:devilFruitType ;
+    upper:property   onepiece:ename ;
+    upper:property   onepiece:rname ;
+.
+
+onepiece:devilFruitType
+    a              upper:Relationship ;
+    upper:class    onepiece:DevilFruitType ;
+    upper:minCount 1 ;
+    upper:maxCount 1 ;
+.
+
+onepiece:DevilFruitType
+    a           upper:Enumeration ;
+    upper:oneOf ( onepiece:Paramecia onepiece:Logia onepiece:Zoan ) ;
+.
+
+onepiece:ename
+    a              upper:Attribute ;
+    upper:datatype xsd:string ;
+    upper:minCount 1 ;
+    upper:maxCount 1 ;
+.
+
+onepiece:Logia
+    a upper:EnumValue ;
+.
+
+onepiece:Paramecia
+    a upper:EnumValue ;
+.
+
+onepiece:rname
+    a              upper:Attribute ;
+    upper:datatype xsd:string ;
+    upper:minCount 1 ;
+    upper:maxCount 1 ;
+.
+
+onepiece:Zoan
+    a upper:EnumValue ;
+.
+```
 
 ## Overview
 
