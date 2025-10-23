@@ -23,6 +23,7 @@
  * @property {HTMLInputElement} domain
  * @property {HTMLButtonElement} diamond
  * @property {HTMLButtonElement} rectangle
+ * @property {HTMLButtonElement} text
  * @property {HTMLButtonElement} arrow
  * @property {HTMLButtonElement} tree
  * @property {SVGSVGElement} svg
@@ -283,6 +284,7 @@ export type References = {
     domain: HTMLInputElement;
     diamond: HTMLButtonElement;
     rectangle: HTMLButtonElement;
+    text: HTMLButtonElement;
     arrow: HTMLButtonElement;
     tree: HTMLButtonElement;
     svg: SVGSVGElement;

@@ -1,0 +1,378 @@
+{
+  "upper-term": {
+    "id": "upper-term",
+    "type": "diamond",
+    "x": 800,
+    "y": 100,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Term (SC)"
+  },
+  "upper-shape": {
+    "id": "upper-shape",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Shape (SC)"
+  },
+  "upper-type": {
+    "id": "upper-type",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Type (SC)"
+  },
+  "upper-extension": {
+    "id": "upper-extension",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Extension (DC)"
+  },
+  "upper-class": {
+    "id": "upper-class",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Class (SC)"
+  },
+  "upper-direct-class": {
+    "id": "upper-direct-class",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:DirectClass (DC)"
+  },
+  "upper-sealed-class": {
+    "id": "upper-sealed-class",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:SealedClass (DC)"
+  },
+  "upper-trait": {
+    "id": "upper-trait",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Trait (DC)"
+  },
+  "upper-qualified-class": {
+    "id": "upper-qualified-class",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:QualifiedClass (DC)"
+  },
+  "upper-singleton": {
+    "id": "upper-singleton",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Singleton (DC)"
+  },
+  "upper-union": {
+    "id": "upper-union",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Union (DC)"
+  },
+  "upper-enumeration": {
+    "id": "upper-enumeration",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Enumeration (DC)"
+  },
+  "upper-list": {
+    "id": "upper-list",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:List (DC)"
+  },
+  "upper-property": {
+    "id": "upper-property",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Property (SC)"
+  },
+  "upper-attribute": {
+    "id": "upper-attribute",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Attribute (DC)"
+  },
+  "upper-relationship": {
+    "id": "upper-relationship",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Relationship (DC)"
+  },
+  "upper-connected-node": {
+    "id": "upper-connected-node",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:ConnectedNode (DC)"
+  },
+  "upper-refinement": {
+    "id": "upper-refinement",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Refinement (DC)"
+  },
+  "upper-enum-value": {
+    "id": "upper-enum-value",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:EnumValue (DC)"
+  },
+  "upper-datatype": {
+    "id": "upper-datatype",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Datatype (SC)"
+  },
+  "upper-primitive-datatype": {
+    "id": "upper-primitive-datatype",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:PrimitiveDatatype (SC)"
+  },
+  "upper-lang-string": {
+    "id": "upper-lang-string",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:LangString (DC)"
+  },
+  "upper-any-uri": {
+    "id": "upper-any-uri",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:AnyURI (DC)"
+  },
+  "upper-boolean": {
+    "id": "upper-boolean",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Boolean (DC)"
+  },
+  "upper-date": {
+    "id": "upper-date",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Date (DC)"
+  },
+  "upper-date-time": {
+    "id": "upper-date-time",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:DateTime (DC)"
+  },
+  "upper-decimal": {
+    "id": "upper-decimal",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Decimal (DC)"
+  },
+  "upper-double": {
+    "id": "upper-double",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Double (DC)"
+  },
+  "upper-float": {
+    "id": "upper-float",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Float (DC)"
+  },
+  "upper-int": {
+    "id": "upper-int",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Int (DC)"
+  },
+  "upper-integer": {
+    "id": "upper-integer",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Integer (DC)"
+  },
+  "upper-long": {
+    "id": "upper-long",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Long (DC)"
+  },
+  "upper-string": {
+    "id": "upper-string",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:String (DC)"
+  },
+  "upper-derived-datatype": {
+    "id": "upper-derived-datatype",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:DerivedDatatype (SC)"
+  },
+  "upper-built-in-derived-datatype": {
+    "id": "upper-built-in-derived-datatype",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:BuiltInDerivedDatatype (SC)"
+  },
+  "upper-non-negative-integer": {
+    "id": "upper-non-negative-integer",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:NonNegativeInteger (DC)"
+  },
+  "upper-custom-datatype": {
+    "id": "upper-custom-datatype",
+    "type": "diamond",
+    "x": 0,
+    "y": 0,
+    "width": 180,
+    "height": 180,
+    "text": "demo:CustomDatatype (DC)"
+  },
+  "term-tree": {
+    "id": "term-tree",
+    "type": "tree",
+    "root": "upper-term",
+    "items": [
+      { "parent": "upper-term", "element": "upper-shape" },
+      { "parent": "upper-shape", "element": "upper-type" },
+      { "parent": "upper-type", "element": "upper-extension" },
+      { "parent": "upper-type", "element": "upper-class" },
+      { "parent": "upper-class", "element": "upper-direct-class" },
+      { "parent": "upper-class", "element": "upper-sealed-class" },
+      { "parent": "upper-class", "element": "upper-trait" },
+      { "parent": "upper-class", "element": "upper-qualified-class" },
+      { "parent": "upper-class", "element": "upper-singleton" },
+      { "parent": "upper-class", "element": "upper-union" },
+      { "parent": "upper-class", "element": "upper-enumeration" },
+      { "parent": "upper-class", "element": "upper-list" },
+      { "parent": "upper-shape", "element": "upper-property" },
+      { "parent": "upper-property", "element": "upper-attribute" },
+      { "parent": "upper-property", "element": "upper-relationship" },
+      { "parent": "upper-property", "element": "upper-connected-node" },
+      { "parent": "upper-shape", "element": "upper-refinement" },
+      { "parent": "upper-term", "element": "upper-enum-value" },
+      { "parent": "upper-term", "element": "upper-datatype" },
+      { "parent": "upper-datatype", "element": "upper-primitive-datatype" },
+      { "parent": "upper-primitive-datatype", "element": "upper-lang-string" },
+      { "parent": "upper-primitive-datatype", "element": "upper-any-uri" },
+      { "parent": "upper-primitive-datatype", "element": "upper-boolean" },
+      { "parent": "upper-primitive-datatype", "element": "upper-date" },
+      { "parent": "upper-primitive-datatype", "element": "upper-date-time" },
+      { "parent": "upper-primitive-datatype", "element": "upper-decimal" },
+      { "parent": "upper-primitive-datatype", "element": "upper-double" },
+      { "parent": "upper-primitive-datatype", "element": "upper-float" },
+      { "parent": "upper-primitive-datatype", "element": "upper-int" },
+      { "parent": "upper-primitive-datatype", "element": "upper-integer" },
+      { "parent": "upper-primitive-datatype", "element": "upper-long" },
+      { "parent": "upper-primitive-datatype", "element": "upper-string" },
+      { "parent": "upper-datatype", "element": "upper-derived-datatype" },
+      { "parent": "upper-derived-datatype", "element": "upper-built-in-derived-datatype" },
+      { "parent": "upper-built-in-derived-datatype", "element": "upper-non-negative-integer" },
+      { "parent": "upper-derived-datatype", "element": "upper-custom-datatype" }
+    ]
+  }
+}

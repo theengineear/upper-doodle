@@ -1,0 +1,46 @@
+{
+  "arrow1": {
+    "id": "arrow1",
+    "type": "arrow",
+    "x1": 50,
+    "y1": 50,
+    "x2": 150,
+    "y2": 150,
+    "text": "demo:hasTitle (PK1)",
+    "source": null,
+    "target": null
+  },
+  "arrow2": {
+    "id": "arrow2",
+    "type": "arrow",
+    "x1": 200,
+    "y1": 50,
+    "x2": 320,
+    "y2": 130,
+    "text": "demo:hasDirector (0..*)",
+    "source": null,
+    "target": null
+  },
+  "arrow3": {
+    "id": "arrow3",
+    "type": "arrow",
+    "x1": 200,
+    "y1": 340,
+    "x2": 280,
+    "y2": 200,
+    "text": "demo:hasGenre (1..*)",
+    "source": null,
+    "target": null
+  },
+  "arrow4": {
+    "id": "arrow4",
+    "type": "arrow",
+    "x1": 500,
+    "y1": 50,
+    "x2": 560,
+    "y2": 110,
+    "text": "demo:releasedBy (0..1)",
+    "source": null,
+    "target": null
+  }
+}

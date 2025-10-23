@@ -1,0 +1,38 @@
+{
+  "diamond1": {
+    "id": "diamond1",
+    "type": "diamond",
+    "x": 20,
+    "y": 50,
+    "width": 160,
+    "height": 100,
+    "text": "demo:Movie (DC)"
+  },
+  "diamond2": {
+    "id": "diamond2",
+    "type": "diamond",
+    "x": 180,
+    "y": 50,
+    "width": 180,
+    "height": 100,
+    "text": "demo:Person (DC)"
+  },
+  "diamond3": {
+    "id": "diamond3",
+    "type": "diamond",
+    "x": 350,
+    "y": 50,
+    "width": 180,
+    "height": 120,
+    "text": "demo:Genre (SC)"
+  },
+  "diamond4": {
+    "id": "diamond4",
+    "type": "diamond",
+    "x": 540,
+    "y": 50,
+    "width": 200,
+    "height": 200,
+    "text": "demo:Studio (E)"
+  }
+}

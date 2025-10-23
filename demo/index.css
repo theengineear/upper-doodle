@@ -1,0 +1,25 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  line-height: 1.6;
+}
+h1 {
+  margin-bottom: 30px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  margin-bottom: 12px;
+}
+a {
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 18px;
+}
+a:hover {
+  text-decoration: underline;
+}

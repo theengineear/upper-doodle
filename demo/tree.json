@@ -1,0 +1,104 @@
+{
+  "color-root": {
+    "id": "color-root",
+    "type": "diamond",
+    "x": 0,
+    "y": 200,
+    "width": 150,
+    "height": 150,
+    "text": "demo:Color (E)"
+  },
+  "color-red": {
+    "id": "color-red",
+    "type": "diamond",
+    "x": 50,
+    "y": 170,
+    "width": 150,
+    "height": 150,
+    "text": "demo:Red (V)"
+  },
+  "color-green": {
+    "id": "color-green",
+    "type": "diamond",
+    "x": 50,
+    "y": 290,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Green (V)"
+  },
+  "color-blue": {
+    "id": "color-blue",
+    "type": "diamond",
+    "x": 50,
+    "y": 410,
+    "width": 150,
+    "height": 150,
+    "text": "demo:Blue (V)"
+  },
+  "color-tree": {
+    "id": "color-tree",
+    "type": "tree",
+    "root": "color-root",
+    "items": [
+      { "parent": "color-root", "element": "color-red" },
+      { "parent": "color-root", "element": "color-green" },
+      { "parent": "color-root", "element": "color-blue" }
+    ]
+  },
+  "vehicle-root": {
+    "id": "vehicle-root",
+    "type": "diamond",
+    "x": 450,
+    "y": 300,
+    "width": 180,
+    "height": 180,
+    "text": "demo:Vehicle (SC)"
+  },
+  "vehicle-land": {
+    "id": "vehicle-land",
+    "type": "diamond",
+    "x": 300,
+    "y": 170,
+    "width": 200,
+    "height": 200,
+    "text": "demo:LandVehicle (SC)"
+  },
+  "vehicle-water": {
+    "id": "vehicle-water",
+    "type": "diamond",
+    "x": 300,
+    "y": 290,
+    "width": 220,
+    "height": 220,
+    "text": "demo:WaterVehicle (SC)"
+  },
+  "vehicle-car": {
+    "id": "vehicle-car",
+    "type": "diamond",
+    "x": 380,
+    "y": 410,
+    "width": 150,
+    "height": 150,
+    "text": "demo:Car (DC)"
+  },
+  "vehicle-truck": {
+    "id": "vehicle-truck",
+    "type": "diamond",
+    "x": 380,
+    "y": 530,
+    "width": 160,
+    "height": 160,
+    "text": "demo:Truck (DC)"
+  },
+  "vehicle-tree": {
+    "id": "vehicle-tree",
+    "type": "tree",
+    "root": "vehicle-root",
+    "items": [
+      { "parent": "vehicle-root", "element": "vehicle-land" },
+      { "parent": "vehicle-root", "element": "vehicle-water" },
+      { "parent": "vehicle-land", "element": "vehicle-car" },
+      { "parent": "vehicle-land", "element": "vehicle-truck" }
+    ]
+  }
+}

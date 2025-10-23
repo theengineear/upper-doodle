@@ -1,0 +1,77 @@
+{
+  "subject1": {
+    "id": "subject1",
+    "type": "text",
+    "x": 50,
+    "y": 50,
+    "text": "demo:Movie"
+  },
+  "predicate1": {
+    "id": "predicate1",
+    "type": "arrow",
+    "x1": 123,
+    "y1": 55,
+    "x2": 448,
+    "y2": 55,
+    "text": "rdf:type",
+    "source": "subject1",
+    "target": "object1"
+  },
+  "object1": {
+    "id": "object1",
+    "type": "text",
+    "x": 450,
+    "y": 50,
+    "text": "upper:DirectClass"
+  },
+  "subject2": {
+    "id": "subject2",
+    "type": "text",
+    "x": 50,
+    "y": 120,
+    "text": "demo:Movie"
+  },
+  "predicate2": {
+    "id": "predicate2",
+    "type": "arrow",
+    "x1": 123,
+    "y1": 125,
+    "x2": 448,
+    "y2": 125,
+    "text": "upper:label",
+    "source": "subject2",
+    "target": "object2"
+  },
+  "object2": {
+    "id": "object2",
+    "type": "text",
+    "x": 450,
+    "y": 120,
+    "text": "\"Movie\"@en"
+  },
+  "subject3": {
+    "id": "subject3",
+    "type": "text",
+    "x": 50,
+    "y": 190,
+    "text": "demo:Movie"
+  },
+  "predicate3": {
+    "id": "predicate3",
+    "type": "arrow",
+    "x1": 123,
+    "y1": 195,
+    "x2": 448,
+    "y2": 195,
+    "text": "upper:property",
+    "source": "subject3",
+    "target": "object3"
+  },
+  "object3": {
+    "id": "object3",
+    "type": "text",
+    "x": 450,
+    "y": 190,
+    "text": "demo:releaseYear"
+  }
+}

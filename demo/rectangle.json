@@ -1,0 +1,38 @@
+{
+  "rect1": {
+    "id": "rect1",
+    "type": "rectangle",
+    "x": 50,
+    "y": 50,
+    "width": 120,
+    "height": 100,
+    "text": "xsd:string"
+  },
+  "rect2": {
+    "id": "rect2",
+    "type": "rectangle",
+    "x": 200,
+    "y": 50,
+    "width": 130,
+    "height": 80,
+    "text": "xsd:integer"
+  },
+  "rect3": {
+    "id": "rect3",
+    "type": "rectangle",
+    "x": 350,
+    "y": 50,
+    "width": 130,
+    "height": 120,
+    "text": "xsd:dateTime"
+  },
+  "rect4": {
+    "id": "rect4",
+    "type": "rectangle",
+    "x": 500,
+    "y": 50,
+    "width": 120,
+    "height": 60,
+    "text": "xsd:boolean"
+  }
+}

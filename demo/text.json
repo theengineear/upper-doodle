@@ -1,0 +1,30 @@
+{
+  "text1": {
+    "id": "text1",
+    "type": "text",
+    "x": 50,
+    "y": 50,
+    "text": "Hello World @en"
+  },
+  "text2": {
+    "id": "text2",
+    "type": "text",
+    "x": 50,
+    "y": 100,
+    "text": "Bonjour le monde @fr"
+  },
+  "text3": {
+    "id": "text3",
+    "type": "text",
+    "x": 50,
+    "y": 150,
+    "text": "This is a multi-line\ntext example that spans\nseveral lines"
+  },
+  "text4": {
+    "id": "text4",
+    "type": "text",
+    "x": 50,
+    "y": 250,
+    "text": "Hola Mundo @es"
+  }
+}

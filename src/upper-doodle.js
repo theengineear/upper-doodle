@@ -42,6 +42,7 @@ const TREE_HORIZONTAL_GAP = 40;  // Inter-column spacing
  * @property {HTMLInputElement} domain
  * @property {HTMLButtonElement} diamond
  * @property {HTMLButtonElement} rectangle
+ * @property {HTMLButtonElement} text
  * @property {HTMLButtonElement} arrow
  * @property {HTMLButtonElement} tree
  * @property {SVGSVGElement} svg
@@ -2928,6 +2929,7 @@ export class UpperDoodle extends HTMLElement {
       domain: this.#getElement('domain', 'input'),
       diamond: this.#getElement('diamond', 'button'),
       rectangle: this.#getElement('rectangle', 'button'),
+      text: this.#getElement('text', 'button'),
       arrow: this.#getElement('arrow', 'button'),
       tree: this.#getElement('tree', 'button'),
       svg: this.#getElement('svg', 'svg'),
@@ -2948,6 +2950,7 @@ export class UpperDoodle extends HTMLElement {
       switch (event.target) {
         case this.#references.diamond:   this._create('diamond');   break;
         case this.#references.rectangle: this._create('rectangle'); break;
+        case this.#references.text:      this._create('text');      break;
         case this.#references.arrow:     this._create('arrow');     break;
         case this.#references.tree:      this._plant();             break;
         default:

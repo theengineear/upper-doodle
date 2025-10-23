@@ -229,6 +229,11 @@ styleSheet.replaceSync(css`
   pointer-events: none;
 }
 
+#tools #text {
+  /* We don’t currently have a need for this, simply hide it for now. */
+  display: none;
+}
+
 #tools #help {
   position: relative;
 }
