@@ -20,7 +20,9 @@
   "keywords": [],
   "author": "Andrew Seier",
   "devDependencies": {
-    "@netflix/eslint-config": "^3.0.0",
+    "@netflix/eslint-config": "3.0.0",
+    "@netflix/x-test": "2.0.0-rc.2",
+    "@netflix/x-test-cli": "1.0.0-rc.2",
     "eslint": "^9.36.0",
     "globals": "^16.4.0",
     "typescript": "^5.0.0"
