@@ -132,11 +132,54 @@ That’s it!
 
 ### Diamond DSL
 
-TODO! Describe DSL for concepts like `foo:Bar (SC)`.
+Diamonds represent classes in your domain model. The text inside a diamond
+follows the pattern `<prefix>:<local-name> (<type-abbreviation>)`. If defining a
+concept in the domain being authored, the `<prefix>` is optional.
+
+The `<type-abbreviation>` is one of the following:
+
+| Abbreviation | Meaning      | Description                            |
+|--------------|--------------|----------------------------------------|
+| `(DC)`       | Direct Class | A standard class in your domain        |
+| `(SC)`       | Sealed Class | A class with a fixed set of subclasses |
+| `(E)`        | Enumeration  | A closed set of values                 |
+| `(V)`        | Enum Value   | A member of an enumeration             |
+
+**Examples:**
+
+- `Film (DC)` - A direct class representing films (optional prefix omitted)
+- `Vehicle (SC)` - A sealed class hierarchy for vehicles (optional prefix omitted)
+- `genre:Genre (E)` - An enumeration of genres
+- `genre:Action (V)` - An enum value within the genre enumeration
 
 ### Arrow DSL
 
-TODO! Describe DSL for attributes like `foo:blah (1..1)`.
+Arrows represent properties on classes. The meaning of an arrow depends on what
+it connects:
+
+- **Diamond → Rectangle**: An attribute with a datatype constraint
+- **Diamond → Diamond**: A relationship between classes
+
+The text on an arrow follows the pattern
+`<prefix>:<local-name> (<min>..<max> <primary-key>)`. If defining a
+concept in the domain being authored, the `<prefix>` is optional. The
+`<primary-key>` is also optional — you only define it if the resulting attribute
+is meant to participate in the primary key for the source class.
+
+**Common cardinality patterns:**
+
+| Pattern  | Meaning                   | Description                 |
+|----------|---------------------------|-----------------------------|
+| `(1..1)` | Required, single value    | Exactly one value required  |
+| `(0..1)` | Optional, single value    | Zero or one value allowed   |
+| `(0..n)` | Optional, multiple values | Zero or more values allowed |
+| `(1..n)` | Required, multiple values | At least one value required |
+
+**Examples:**
+- `title (1..1)` - Every movie must have exactly one title
+- `director (0..1)` - A movie may optionally have one director
+- `actor (0..n)` - A movie can have zero or more actors
+- `person:id (1..1 PK1)` - A person ID that serves as primary key
 
 ## Interface
 
@@ -209,8 +252,105 @@ output as formal models leveraging Upper concepts.
 
 ## Installation
 
-TODO!
+### Via npm
+
+```bash
+npm install upper-doodle
+```
+
+Then import the component in your JavaScript:
+
+```js
+import 'upper-doodle';
+```
+
+### Via CDN
+
+You can also use the component directly from a CDN without any build step:
+
+```html
+<script type="module">
+  import 'https://esm.sh/upper-doodle';
+</script>
+```
+
+Or using unpkg:
+
+```html
+<script type="module">
+  import 'https://unpkg.com/upper-doodle';
+</script>
+```
+
+### Usage
+
+Once imported, use the `<upper-doodle>` custom element in your HTML:
+
+```html
+<upper-doodle></upper-doodle>
+```
+
+See the [Example](#example) section above for more detailed usage.
 
 ## Development
 
-TODO!
+### Setup
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/theengineear/upper-doodle.git
+cd upper-doodle
+npm install
+```
+
+### Development Server
+
+Start the local development server:
+
+```bash
+npm start
+```
+
+This runs a simple HTTP server on `http://localhost:3000`. Demo files are available
+at `http://localhost:3000/demo/<filename>`.
+
+### Commands
+
+```bash
+# Linting
+npm run lint          # Run ESLint with zero warnings policy
+npm run lint:fix      # Auto-fix linting issues
+
+# Type checking and build
+npm run types         # Generate TypeScript declarations from JSDoc
+npm run build         # Alias for npm run types
+
+# Testing
+npm test              # Run all tests via Puppeteer
+
+# Run specific tests by pattern
+npm run test:puppeteer:chrome -- --test-name="pattern"
+```
+
+### Architecture
+
+The project uses a monolithic web component architecture:
+
+- **`src/upper-doodle.js`** - Main component with all state management and rendering
+- **`src/utils/`** - Utility modules for coordinates, drawing, hit testing, RDF export
+- **`src/vendor/`** - Vendored dependencies (rough.js)
+- **`demo/`** - Demo HTML files showcasing features
+- **`test/`** - Test suite using x-test framework
+
+### Type System
+
+The codebase uses JSDoc for TypeScript type annotations. Run `npm run types` to
+generate declaration files in the `types/` directory.
+
+### Contributing
+
+1. Follow the existing code style
+2. Maintain zero ESLint warnings
+3. Add tests for new features
+4. Update documentation as needed
