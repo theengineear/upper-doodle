@@ -1,9 +1,9 @@
 {
+  "private": true,
   "name": "upper-doodle",
   "version": "0.1.0",
-  "description": "A sketch-based web component for visual authoring of UPPER ontology models",
+  "description": "a sketch-y web component for authoring of upper ontology models",
   "type": "module",
-  "main": "src/upper-doodle.js",
   "exports": {
     ".": "./src/upper-doodle.js",
     "./src/upper-doodle.js": "./src/upper-doodle.js"
@@ -17,6 +17,10 @@
     "test": "npm run test:puppeteer:chrome",
     "test:puppeteer:chrome": "x-test --client=puppeteer --url=http://127.0.0.1:3000/test/ --coverage=true"
   },
+  "files": [
+    "src/**/*",
+    "types/**/*"
+  ],
   "keywords": [],
   "author": "Andrew Seier",
   "devDependencies": {
